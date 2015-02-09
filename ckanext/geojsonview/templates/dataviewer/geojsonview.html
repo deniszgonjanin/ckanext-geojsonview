@@ -12,6 +12,14 @@
     </h4>
 </div>
 
+{% block scripts %}
+    {{super()}}
+
+    <script>
+        var proxied_url = {{h.literal(proxied_url)}}
+    </script>
+{% endblock %}
+
 {% resource 'ckanext-geojsonview/geojsonview' %}
 
 {% endblock %}

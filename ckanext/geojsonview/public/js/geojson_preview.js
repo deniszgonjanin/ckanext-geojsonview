@@ -25,15 +25,15 @@ ckan.module('geojsonpreview', function (jQuery, _) {
 
 
       // use CORS, if supported by browser and server
-      if (jQuery.support.cors && preload_resource['original_url'] !== undefined) {
-        jQuery.getJSON(preload_resource['original_url'])
+      if (jQuery.support.cors) {
+        jQuery.getJSON(preload_resource['url'])
         .done(
           function(data){
             self.showPreview(data);
           })
         .fail(
           function(jqxhr, textStatus, error) {
-            jQuery.getJSON(preload_resource['url'])
+            jQuery.getJSON(proxied_url)
             .done(
               function(data){
                 self.showPreview(data);
@@ -46,7 +46,7 @@ ckan.module('geojsonpreview', function (jQuery, _) {
           }
         );
       } else {
-        jQuery.getJSON(preload_resource['url']).done(
+        jQuery.getJSON(proxied_url).done(
           function(data){
             self.showPreview(data);
           })

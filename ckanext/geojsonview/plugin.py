@@ -25,11 +25,11 @@ class GeojsonviewPlugin(plugins.SingletonPlugin):
         }
 
     def setup_template_variables(self, context, data_dict):
-        proxy_url = proxy.get_proxified_resource_url(data_dict)
+        proxified_url = proxy.get_proxified_resource_url(data_dict)
 
         return {
-                'url': json.dumps(proxy_url)
-                }
+            'proxied_url': json.dumps(proxified_url)
+        }
 
     def can_view(self, data_dict):
         return data_dict['resource'].get('format', '').lower() == 'geojson'
