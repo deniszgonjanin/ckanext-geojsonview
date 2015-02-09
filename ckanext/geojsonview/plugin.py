@@ -1,6 +1,9 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
+import ckanext.resourceproxy.plugin as proxy
+import ckan.lib.datapreview as datapreview
 
+from ckan.common import json
 
 class GeojsonviewPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer, inherit=True)
@@ -18,11 +21,18 @@ class GeojsonviewPlugin(plugins.SingletonPlugin):
             'name': 'geojson_view',
             'title': 'Map View',
             'icon': 'globe',
-            'iframed': False
+            'iframed': True
         }
 
-    def can_view(self, data_dict):
-        return data_dict['resource'].get('format', '').lower() == 'geojson':
+    def setup_template_variables(self, context, data_dict):
+        proxy_url = proxy.get_proxified_resource_url(data_dict)
 
-    def view_template(self):
+        return {
+                'url': json.dumps(proxy_url)
+                }
+
+    def can_view(self, data_dict):
+        return data_dict['resource'].get('format', '').lower() == 'geojson'
+
+    def view_template(self, context, data_dict):
         return 'dataviewer/geojsonview.html'
