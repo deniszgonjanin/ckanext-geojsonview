@@ -8,3 +8,16 @@ use the `nongeos` plugin of [ckanext-spatial](https://github.com/ckan/ckanext-sp
 
 For a more powerful Resource View extension that uses OpenLayers and also displays
 KML and a bunch of other good stuff, take a look at [ckanext-geoview](https://github.com/pduchesne/ckanext-geoview)
+
+
+Usage
+=====
+To your development.ini, add:
+```
+ckan.plugins = ... geojsonview
+```
+
+If you would like geojson view created by default, you can also add:
+```
+ckan.views.default_views = geojson_view ...
+```
