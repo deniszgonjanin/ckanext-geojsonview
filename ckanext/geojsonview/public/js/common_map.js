@@ -55,7 +55,7 @@
           // MapQuest OpenStreetMap base map
           baseLayerUrl = '//otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png';
           leafletBaseLayerOptions.subdomains = mapConfig.subdomains || '1234';
-          leafletBaseLayerOptions.attribution = mapConfig.attribution || 'Données &copy; Contributeurs OpenStreetMap, Carte avec la permission de <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="//developer.mapquest.com/content/osm/mq_logo.png">';
+          leafletBaseLayerOptions.attribution = mapConfig.attribution || 'Données &copy; Contributeurs OpenStreetMap, Carte avec la permission de <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img alt="Map Quest Logo" src="//developer.mapquest.com/content/osm/mq_logo.png">';
       }
 
       var baseLayer = new L.TileLayer(baseLayerUrl, leafletBaseLayerOptions);
